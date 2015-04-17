@@ -7,7 +7,7 @@ output: html_document
 
 ### Loading and preprocessing the data
 
-1. First check if the raw data file (either activity.zip or activity.csv) exists. If not, download from the source URL, and/or unzip the file for loading.
+* First check if the raw data file (either activity.zip or activity.csv) exists. If not, download from the source URL, and/or unzip the file for loading.
 
 
 ```r
@@ -21,7 +21,7 @@ if(!file.exists("activity.csv")) {      # Check if .csv file exists.
 }
 ```
 
-2. Then load the data using _read.csv()_, and convert the "date" column from _Factor (class)_ to _Date(class)_.
+* Then load the data using _read.csv()_, and convert the "date" column from _Factor (class)_ to _Date(class)_.
 
 
 ```r
@@ -42,7 +42,7 @@ head(rawData)
 
 ### What is mean total number of steps taken per day?
 
-1. Use the _plyr::ddply()_ function to analyze the total steps taken each day then plot the histogram of the resulting data frame. Missing values are removed using the _na.omit()_ function.
+* Use the _plyr::ddply()_ function to analyze the total steps taken each day then plot the histogram of the resulting data frame. Missing values are removed using the _na.omit()_ function.
 
 
 ```r
@@ -75,11 +75,11 @@ summary(totalSteps$Total)
 options(scipen = 1, digits = 4)
 ```
 
-2. For total number of steps taken per day, the **mean** value _meanSteps_ is **10766.1887**, and the **median** value _medianSteps_ is **10765**. Notice that the median value differs from the summary table due to the rounding behavior in the _summary()_ function, as described in [this StackOverflow post](http://stackoverflow.com/a/26360801), which can be set using _digits_ in the _options()_ function.
+* For total number of steps taken per day, the **mean** value _meanSteps_ is **10766.1887**, and the **median** value _medianSteps_ is **10765**. Notice that the median value differs from the summary table due to the rounding behavior in the _summary()_ function, as described in [this StackOverflow post](http://stackoverflow.com/a/26360801), which can be set using _digits_ in the _options()_ function.
 
 ## What is the average daily activity pattern?
 
-1. To compute the average daily activity patern, i.e. the mean value of steps taken for any time interval throughout the days. Again, _plyr::ddply()_ function is used, and the "interval" column in the resulting data frame _averageSteps_ is expanded to _Date (class)_ just for plotting the X-axis label for readability. Missing values are removed.
+* To compute the average daily activity patern, i.e. the mean value of steps taken for any time interval throughout the days. Again, _plyr::ddply()_ function is used, and the "interval" column in the resulting data frame _averageSteps_ is expanded to _Date (class)_ just for plotting the X-axis label for readability. Missing values are removed.
 
 
 ```r
@@ -101,11 +101,11 @@ maxSteps <- max(averageSteps$Average)
 maxInterval <- averageSteps$interval[which(averageSteps$Average %in% maxSteps)]
 ```
 
-2. The maximum average number of steps in all the intervals _(maxSteps)_ is 206.1698, and it happens at interval 835 _(maxInterval)_.
+* The maximum average number of steps in all the intervals _(maxSteps)_ is 206.1698, and it happens at interval 835 _(maxInterval)_.
 
 ### Imputing missing values
 
-1. The total number of missing values is calculated by applying the _is.na()_ function to the "steps" column then sum all the _TRUE_ values.
+* The total number of missing values is calculated by applying the _is.na()_ function to the "steps" column then sum all the _TRUE_ values.
 
 
 ```r
@@ -116,10 +116,10 @@ sum(is.na(rawData$steps))
 ## [1] 2304
 ```
 
-2. Three strategies to fill the missing values will be evaluated and compared here:
-* Use the averages steps of that day.
-* Use the median value of that day.
-* Use the mean value of that interval.
+* Three strategies to fill the missing values will be evaluated and compared here:
+1. Use the averages steps of that day.
+2. Use the median value of that day.
+3. Use the mean value of that interval.
 
 
 ```r
@@ -176,11 +176,11 @@ head(newData3)
 ## 6 2.09434 2012-10-01       25
 ```
 
-3. Because all missing values happen for the entire day (all 288 intervals), new NAs and/or NaNs will be inevitably introduced if the first two strategies were used. Therefore, the 3rd strategy will be adopted from here on.
+* Because all missing values happen for the entire day (all 288 intervals), new NAs and/or NaNs will be inevitably introduced if the first two strategies were used. Therefore, the 3rd strategy will be adopted from here on.
 
 
 
-4. The new histogram with the new dataset is plotted below:
+* The new histogram with the new dataset is plotted below:
 
 
 ```r
@@ -215,7 +215,7 @@ The new **mean** value _newMeanSteps_ is **10766.1887**, and the new **median** 
 
 ### Are there differences in activity patterns between weekdays and weekends?
 
-1. Use the _weekday()_ function to create a new factor variable with two levels, "weekday" and "weekend", to indicate wether a given date is a weekday or weekend day.
+* Use the _weekday()_ function to create a new factor variable with two levels, "weekday" and "weekend", to indicate wether a given date is a weekday or weekend day.
 
 
 ```r
@@ -234,7 +234,7 @@ summary(whatDay)
 ##   12960    4608
 ```
 
-2. Plot the daily activity patterns as Weekdays vs. Weekends.
+* Plot the daily activity patterns as Weekdays vs. Weekends.
 
 Here I chose to use the _base_ package for plotting for practice. _Lattice_ and _ggplot2_ will be practiced in the 2nd peer assessment assignment.
 
